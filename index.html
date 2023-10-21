@@ -130,10 +130,12 @@
             map.addSource("gsi-terrain-rgb", {
                 type: 'raster-dem',
                 tiles: [
-                    'https://optgeo.github.io/10b256/zxy/{z}/{x}/{y}.webp',
+                    // 'https://optgeo.github.io/10b256/zxy/{z}/{x}/{y}.webp',
+                    'https://optgeo.github.io/10b512-7-113-50/zxy/{z}/{x}/{y}.webp',
                 ],
                 attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html#dem" target="_blank">地理院タイル(標高タイル)</a>',
-                tileSize: 256
+                // tileSize: 256
+                tileSize: 512
             });
 
             // 標高タイルセット

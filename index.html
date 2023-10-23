@@ -114,7 +114,7 @@
         // Attributionを折りたたみ表示
         map.addControl(new maplibregl.AttributionControl({
             compact: true,
-            customAttribution: '（<a href="https://twitter.com/shi__works" target="_blank">Twitter</a> | <a href="https://github.com/shi-works/gsi-terrain-dem-Terrain-RGB-on-maplibre-gl-js" target="_blank">Github</a>） '
+            customAttribution: '（<a href="https://twitter.com/shi__works" target="_blank">Twitter</a> | <a href="https://github.com/shi-works/gsi-terrain-dem-terrain-rgb-on-maplibre-gl-js-demo" target="_blank">Github</a>） '
         }));
 
         // 3D地形コントロール表示
@@ -127,19 +127,17 @@
 
         map.on('load', () => {
             // 標高タイルソース
-            map.addSource("gsi-terrain-rgb", {
+            map.addSource("gsidem-terrain-rgb", {
                 type: 'raster-dem',
                 tiles: [
-                    // 'https://optgeo.github.io/10b256/zxy/{z}/{x}/{y}.webp',
-                    'https://optgeo.github.io/10b512-7-113-50/zxy/{z}/{x}/{y}.webp',
+                    'https://smb.optgeo.org/ipfs/QmWGYxRhixi4itNhy1YWtYX9sBcYxuykwENNxDsWMfqNgh/{z}/{x}/{y}.webp',
                 ],
                 attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html#dem" target="_blank">地理院タイル(標高タイル)</a>',
-                // tileSize: 256
                 tileSize: 512
             });
 
             // 標高タイルセット
-            map.setTerrain({ 'source': 'gsi-terrain-rgb', 'exaggeration': 1 });
+            map.setTerrain({ 'source': 'gsidem-terrain-rgb', 'exaggeration': 1 });
 
             // 陰影起伏図ソース
             map.addSource("hillshade", {

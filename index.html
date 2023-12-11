@@ -4,8 +4,9 @@
     <title>国土地理院 標高タイル（Terrain RGB）</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://unpkg.com/maplibre-gl@3.1.0/dist/maplibre-gl.js'></script>
-    <link href='https://unpkg.com/maplibre-gl@3.1.0/dist/maplibre-gl.css' rel='stylesheet' />
+    <script src='https://unpkg.com/maplibre-gl@3.4.1/dist/maplibre-gl.js'></script>
+    <link href='https://unpkg.com/maplibre-gl@3.4.1/dist/maplibre-gl.css' rel='stylesheet' />
+    <script src="https://unpkg.com/pmtiles@2.10.0/dist/index.js"></script>
     <style>
         body {
             margin: 0;
@@ -21,10 +22,14 @@
 <body>
     <div id="map"></div>
     <script type="text/javascript">
+        // addProtocolの設定
+        let protocol = new pmtiles.Protocol();
+        maplibregl.addProtocol("pmtiles", protocol.tile);
+
         // マップの初期化
         const map = new maplibregl.Map({
             container: 'map',
-            style: 'building3dphoto.json',
+            style: 'std.json',
             zoom: 12.46,
             minZoom: 1,
             maxZoom: 23,
@@ -83,12 +88,9 @@
             map.addSource("gsidem-terrain-rgb", {
                 type: 'raster-dem',
                 tiles: [
-                    // 'https://x.optgeo.org/et10b/et512/{z}/{x}/{y}.webp',
-                    // 'https://smb.optgeo.org/ipfs/QmWGYxRhixi4itNhy1YWtYX9sBcYxuykwENNxDsWMfqNgh/{z}/{x}/{y}.webp',
                     'https://xs489works.xsrv.jp/raster-tiles/gsi/gsi-dem-terrain-rgb/{z}/{x}/{y}.png'
                 ],
                 attribution: '<a href="https://maps.gsi.go.jp/development/ichiran.html#dem" target="_blank">地理院タイル(標高タイル)</a>',
-                // tileSize: 512
                 tileSize: 256
             });
 
